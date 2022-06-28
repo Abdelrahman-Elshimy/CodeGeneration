@@ -1,0 +1,82 @@
+﻿@model CodeGeneration.Models.LoginViewModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+@{
+    Layout = "_Users";
+}
+@*<p>@ViewBag.comeSuccess</p>*@
+@if (ViewBag.comeSuccess != null)
+{
+    <p style="color: green;position:absolute;padding: 10px;background: #fff;border-radius:5px;left: 10px;top:10px">
+        @ViewBag.comeSuccess
+    </p>
+}
+@if (ViewBag.error != null)
+{
+    <p style="color: red;position:absolute;padding: 10px;background: #fff;border-radius:5px;left: 10px;top:10px">
+        @ViewBag.error
+    </p>
+}
+
+
+<div class="container-scroller">
+    <div class="container-fluid page-body-wrapper full-page-wrapper">
+        <div class="content-wrapper d-flex align-items-center auth auth-bg-1 theme-one">
+            <div class="row w-100 p-0 m-0">
+                <div class="col-lg-4 mx-auto">
+                    <div class="auto-form-wrapper">
+                        <form asp-action="Login" asp-controller="Account">
+                            <div asp-validation-summary="All" class="text-danger"></div>
+                            <div class="form-group">
+                                <label class="label" asp-for="Email">Email</label>
+                                <div class="input-group">
+                                    <input type="email" asp-for="Email" class="form-control" placeholder="Email">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">
+                                            <i class="mdi mdi-check-circle-outline"></i>
+                                        </span>
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <span asp-validation-for="Email" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="label" asp-for="Password">Password</label>
+                                <div class="input-group">
+                                    <input asp-for="Password" type="password" class="form-control" placeholder="*********">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">
+                                            <i class="mdi mdi-check-circle-outline"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <span asp-validation-for="Password" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-primary submit-btn btn-block" type="submit">Login</button>
+                            </div>
+                            <div class="text-block text-center my-3">
+                                <span class="text-small font-weight-semibold">Not a member ?</span>
+                                <a asp-action="Register" asp-controller="Account" class="text-black text-small">Create new account</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- content-wrapper ends -->
+</div>
+<!-- page-body-wrapper ends -->
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

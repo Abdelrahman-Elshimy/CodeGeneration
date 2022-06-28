@@ -1,0 +1,88 @@
+﻿@model IEnumerable<CodeGeneration.Data.Code>
+
+@{
+    ViewData["Title"] = "Codes";
+}
+
+<h1>Codes</h1>
+
+<p>
+    <a asp-action="GenerateCode" class="btn btn-primary">Generate New Code</a>
+</p>
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+
+                <!-- /.card -->
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Codes</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body table-responsive">
+                        <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.User)
+                                        </th>
+                                        <th>
+                                            user Serial
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Service)
+                                        </th>
+                                        <th>
+                                            Date Created 
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Codes)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Status)
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @item.User.FirstName @item.User.MiddleName
+                                            </td>
+                                            <td>
+                                                @item.User.UserSerial
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Service.Name)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Date_Created)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Codes)
+                                            </td>
+                                            <td>
+                                                @if(item.Status == 0)
+                                                {
+                                                    <span>Pending</span>
+                                                }
+                                            </td>
+                                           
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>

@@ -1,0 +1,44 @@
+﻿@model CodeGeneration.Models.Stats
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+<br />
+<h1>Code Generation Tool</h1>
+<div class="row">
+    <div class="col-md-6">
+        <div class="box d-flex justify-content-center align-items-center" style="background:#fff;padding:20px;border-radius:10px;">
+            <div>
+                <h3>Codes Counter</h3>
+                <p style="text-align:center;font-size:25px;font-weight:bold;">@Model.CodesCounter</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="box d-flex justify-content-center align-items-center" style="background:#fff;padding:20px;border-radius:10px;">
+            <div>
+                <h3>Services Counter</h3>
+                <p style="text-align:center;font-size:25px;font-weight:bold;">@Model.ServicesCounter</p>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-6">
+        <div class="box d-flex justify-content-center align-items-center" style="background:#fff;padding:20px;border-radius:10px;">
+            <div>
+                <h3>Today Codes</h3>
+                <p style="text-align:center;font-size:25px;font-weight:bold;">@Model.CodesPerDay</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="box d-flex justify-content-center align-items-center" style="background:#fff;padding:20px;border-radius:10px;">
+            <div>
+                <h3>This Month Codes</h3>
+                <p style="text-align:center;font-size:25px;font-weight:bold;">@Model.CodesPerMonth</p>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,139 @@
+﻿@model CodeGeneration.Models.RegisterViewModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+@{
+    Layout = "_Users";
+}
+<div class="container-scroller">
+    <div class="container-fluid page-body-wrapper full-page-wrapper">
+        <div class="content-wrapper d-flex align-items-center auth auth-bg-1 theme-one">
+            <div class="row w-100  p-0 m-0">
+                <div class="col-lg-8 mx-auto">
+                    <div class="auto-form-wrapper">
+                        <form asp-action="Register" asp-controller="Account">
+                            <div asp-validation-summary="All" class="text-danger"></div>
+                            <div class="form-group">
+                                <label class="label" asp-for="Email">Email</label>
+                                <div class="input-group">
+                                    <input type="text" asp-for="Email" class="form-control" placeholder="Email">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">
+                                            <i class="mdi mdi-check-circle-outline"></i>
+                                        </span>
+
+                                    </div>
+                                    <div style="display: flex; align-items: center; margin-left: 5px !important;color:darkgrey">
+                                        icon-creations
+                                    </div>
+                                    <select class="form-control" style="margin-left:5px !important;" name="Domain">
+                                        <option value=".com">.com</option>
+                                        <option value=".net">.net</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <span asp-validation-for="Email" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label class="label" asp-for="FirstName">First Name</label>
+                                        <div class="input-group">
+                                            <input asp-for="FirstName" type="text" class="form-control" placeholder="First Name">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">
+                                                    <i class="mdi mdi-check-circle-outline"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <span asp-validation-for="FirstName" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label class="label" asp-for="MiddleName">Middle Name</label>
+                                        <div class="input-group">
+                                            <input asp-for="MiddleName" type="text" class="form-control" placeholder="Middle Name">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">
+                                                    <i class="mdi mdi-check-circle-outline"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <span asp-validation-for="MiddleName" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+
+                                    <div class="form-group">
+                                        <label class="label" asp-for="LastName">Last Name</label>
+                                        <div class="input-group">
+                                            <input asp-for="LastName" type="text" class="form-control" placeholder="Last Name">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">
+                                                    <i class="mdi mdi-check-circle-outline"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <span asp-validation-for="LastName" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                           
+                            <div class="form-group">
+                                <label class="label" asp-for="Password">Password</label>
+                                <div class="input-group">
+                                    <input asp-for="Password" type="password" class="form-control" placeholder="*********">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">
+                                            <i class="mdi mdi-check-circle-outline"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <span asp-validation-for="Password" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="label" asp-for="ConfirmPassword">Confirm Password</label>
+                                <div class="input-group">
+                                    <input asp-for="ConfirmPassword" type="password" class="form-control" placeholder="*********">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">
+                                            <i class="mdi mdi-check-circle-outline"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <button class="btn btn-primary submit-btn btn-block" type="submit">Register</button>
+                            </div>
+                            <div class="text-block text-center my-3">
+                                <a asp-action="Login" asp-controller="Account" class="text-small font-weight-semibold">Already Have Account ?</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- content-wrapper ends -->
+        </div>
+        </div></div>
+        <!-- page-body-wrapper ends -->
+
+        @section Scripts {
+            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        }

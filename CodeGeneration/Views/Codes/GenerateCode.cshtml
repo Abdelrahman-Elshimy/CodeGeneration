@@ -1,0 +1,87 @@
+﻿@model CodeGeneration.Data.Code
+@{
+    ViewData["Title"] = "Generate Code";
+}
+<br />
+<h1>Generate Code</h1>
+<hr />
+<form asp-controller="Codes" asp-action="Generate" method="post">
+    <div class="row">
+        <div class="col-md-6 mt-2">
+            <label class="control-label">Please choose a year</label>
+            <select id="years" class="form-control" asp-items="ViewBag.Years"></select>
+        </div>
+        <div class="col-md-6 mt-2">
+            <label class="control-label">Please choose a month</label>
+            <select id="months" class="form-control" asp-items="ViewBag.Months"></select>
+        </div>
+    </div>
+    <div class="col-md-12 mt-2">
+        <label class="control-label">Service</label>
+        <select id="service" name="ServiceId" class="form-control" asp-items="ViewBag.ServiceId"></select>
+    </div>
+    <div class="col-md-12 mt-2">
+        <a style="width:100%;" class="btn btn-primary" id="Gen">Generate Code</a>
+    </div>
+</form>
+<br />
+<br />
+<div class="row" style="padding: 0px 15px;">
+    <div class="col-md-12" style="background: #eee;border:1px solid #666;border-radius:5px;display:flex;align-items:center;justify-content:center;">
+        <p style="margin:0 !important;font-size:30px;font-weight:bold;" id="code"></p>
+    </div>
+    <div class="col-md-12 d-flex justify-content-center mt-2">
+        <button onclick="CopyToClipboard('code')" class="btn btn-info" style="width: 30%;font-size:20px;font-weight: bold;">Copy</button>
+    </div>
+</div>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+<script type="text/javascript">
+    var years = document.getElementById("years");
+    var months = document.getElementById("months");
+    console.log(years.value);
+    console.log(months.value);
+    $("#Gen").on("click", function () {
+        console.log("asd")
+        $("#code span").remove();
+        sendAjax();
+    });
+    function CopyToClipboard(containerid) {
+        if (document.selection) {
+            var range = document.body.createTextRange();
+            range.moveToElementText(document.getElementById(containerid));
+            range.select().createTextRange();
+            document.execCommand("copy");
+        } else if (window.getSelection) {
+            var range = document.createRange();
+            range.selectNode(document.getElementById(containerid));
+            window.getSelection().addRange(range);
+            document.execCommand("copy");
+        }
+    }
+    function sendAjax() {
+        console.log("xx")
+        var service = document.getElementById("service");
+        var years = document.getElementById("years");
+        var months = document.getElementById("months");
+
+        $.ajax({
+            type: "Post",
+            url: "@Url.Action("GenerateCodes")",
+            data: { service: service.value, years : years.value, months : months.value },
+
+            dataType: "json",
+            success: function (response) {
+
+                $("#code").append("<span>" + response
+                    + "</span>");
+
+
+            },
+            error: function (req, status, error) {
+                alert(error.toString());
+                console.log(error)
+            }
+        });
+        }
+</script>
